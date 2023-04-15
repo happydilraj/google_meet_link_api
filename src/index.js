@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-
 dotenv.config({});
 
 import express from 'express'
@@ -8,13 +7,15 @@ import { google } from 'googleapis'
 import dayjs from 'dayjs'
 import {v4 as uuid} from 'uuid'
 
+const app = express()
+const PORT = process.env.NODE_ENV || 8000
+
 const calendar = google.calendar({
   version: "v3",
   auth: process.env.API_KEY
 })
 
-const app = express()
-const PORT = process.env.NODE_ENV || 8000
+
 const oauth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
